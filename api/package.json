@@ -1,0 +1,25 @@
+{
+  "name": "recipe-scrapper-rest-api",
+  "version": "1.0.0",
+  "description": "The REST api that will accept requests, call the appropriate python functions, and send the appropriate result.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NeilK15/recipe-scrapper-rest-api.git"
+  },
+  "author": "Neil Kapur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NeilK15/recipe-scrapper-rest-api/issues"
+  },
+  "homepage": "https://github.com/NeilK15/recipe-scrapper-rest-api#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}

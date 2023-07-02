@@ -1,2 +1,6 @@
+# Python stuff
 .vscode
 .prettierrc
+
+# Node stuff
+node_modules
