@@ -3,21 +3,21 @@ import requests  # TEMPORARY (PLACE IN UTIL METHODS)
 from bs4 import BeautifulSoup, Tag
 import sys
 import os
+import uuid
 
 # Local modules
-# from src.models import *
 from src.utils import *
+from src.constant import keywords
+from src.extraction import *
 
 
-class RecipeScrapper:
-    initialized = False
-
-    @staticmethod
-    def initialize(dataPath: str = None):
+class RecipeScraper:
+    def __init__(self, dataPath: str = None, url: str = None):
         """
-        This method initializes the Recipe Scrapper and creates the necessary files
+        This method initializes a Recipe Scrapper and creates the necessary files
         and directories needed for processing recipes gathered via html. If no dataPath
-        is specified, the files will be placed under <currentWorkingDirectory>/data.
+        is specified, the files will be placed under <currentWorkingDirectory>/data. A
+        URL is required
 
         The data path will be structured as follows:
 
@@ -33,14 +33,20 @@ class RecipeScrapper:
             tips_raw.txt
           staged
             review.json
-
         """
+        if url == None:
+            raise SyntaxError("Enter valid URL")
 
         if dataPath == None:
+            id = uuid.uuid1()
+            print(id)
             cwd = os.getcwd()
-            # Implement later
-            dataPath = "/".join([cwd, "data"])
+            dataPath = "/".join([cwd, f"data-{id}"])
             make_directory(dataPath)
+
+        # Setting the variables
+        self.__url = url
+        self.__soup = make_request(url)
 
         # Creating the path strings and then creating the folders
         raw_path = "/".join([dataPath, "raw"])
@@ -73,26 +79,29 @@ class RecipeScrapper:
         for file in finalized_files:
             make_file(finalized_path, file)
 
-        RecipeScrapper.initialized = True
+        self.initialized = True
 
-    @staticmethod
-    def create_recipe(url: str):
-        if not RecipeScrapper.initialized:
-            raise RuntimeError("RecipeScrapper has not been initialized")
+    # Properties
+    @property
+    def soup(self) -> BeautifulSoup:
+        return self.__soup
 
-        if url == None:
+    # Logic methods
+    def create_recipe(self):
+        if self.url == None:
             return
 
-        soup = make_request(url)
-        text = soup.get_text()
-        soup.find_all()
+        self.soup.find_all()
 
-        insts = RecipeScrapper.extract_instructions(soup)
+        insts = self.extract_instructions()
         for inst in insts:
             print(inst.text)
 
         # recipe = Recipe()
         # recipe.prep_time = Time()
 
-    def extract_instructions(soup: BeautifulSoup):
-        return soup.find_all(has_instructions)
+    def extract_instructions(self):
+        return self.soup.find_all(has_instructions)
+
+    def extract_info(self):
+        return TimeExtracting.extract_prep_time(self.soup)

@@ -11,3 +11,6 @@ def make_request(url: str) -> BeautifulSoup:
     # Requesting the page and returning the Soup
     page = requests.get(url, headers=HEADERS)
     return BeautifulSoup(page.content, "html.parser")
+
+
+# Various methods for requesting a page and verifying that the page was not blocked

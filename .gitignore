@@ -4,3 +4,6 @@
 
 # Node stuff
 node_modules
+
+# data specific
+data*

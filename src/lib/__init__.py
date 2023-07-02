@@ -1,1 +1,1 @@
-from .recipe_scrapper import RecipeScrapper
+from .recipe_scraper import RecipeScraper

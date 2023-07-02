@@ -2,7 +2,10 @@ import sys
 
 sys.path.append("/Users/neilkapur/Local/recipe-scraper/src")
 
-from lib.recipe_scrapper import RecipeScrapper
+from lib.recipe_scraper import RecipeScraper
 
-RecipeScrapper.initialize()
-RecipeScrapper.create_recipe("https://downshiftology.com/recipes/breakfast-potatoes/")
+scraper = RecipeScraper(url="https://downshiftology.com/recipes/breakfast-potatoes/")
+
+info = scraper.extract_info()
+
+print(info)
