@@ -9,3 +9,11 @@ COOK_TIME_VALUE = "wprm-recipe-cook_time"
 COOK_TIME_UNIT = "wprm-recipe-cook_time-unit"
 TOTAL_TIME_VALUE = "wprm-recipe-total_time"
 TOTAL_TIME_UNIT = "wprm-recipe-total_time-unit"
+
+# Other Information specific class names
+COURSE = "wprm-recipe-course"
+CUISINE = "wprm-recipe-cuisine"
+SERVINGS = "wprm-recipe-servings"
+AUTHOR = "wprm-recipe-author"
+IMAGE_URL = "wprm-recipe-image"
+DESCRIPTION = "wprm-recipe-summary"

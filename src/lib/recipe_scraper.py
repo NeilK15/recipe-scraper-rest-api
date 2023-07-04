@@ -147,15 +147,14 @@ class RecipeScraper:
         prep_time = Extraction.extract_time(self.__soup, TimeType.TIME_PREP)
         cook_time = Extraction.extract_time(self.__soup, TimeType.TIME_COOK)
         total_time = Extraction.extract_time(self.__soup, TimeType.TIME_TOTAL)
-
-        course = None
-        cuisine = None
+        course = Extraction.extract_course(self.__soup)
+        cuisine = Extraction.extract_cuisine(self.__soup)
         keywords_ = None
-        servings = None
-        author = None
-        url = None
-        image_url = None
-        description = None
+        servings = Extraction.extract_servings(self.__soup)
+        author = Extraction.extract_author(self.__soup)
+        url = self.__url
+        image_url = Extraction.extract_image_url(self.__soup)
+        description = Extraction.extract_description(self.__soup)
 
         return (
             prep_time,

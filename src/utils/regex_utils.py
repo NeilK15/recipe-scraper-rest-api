@@ -2,5 +2,5 @@ import re
 
 
 def get_int_from_str(string: str) -> int | None:
-    result = re.search("/[0-9]/", string)
-    return int(result) if result is not None else None
+    result = re.search(r"\d", string)
+    return None if (result is None) else int(result.group(0))

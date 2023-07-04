@@ -22,11 +22,34 @@ class Extraction:
                 raise SyntaxError("Invalid time_type")
 
         time_value = get_int_from_str(get_text_from_class_name(soup, names[0]))
-        print(names[0])
-        print(get_text_from_class_name(soup, names[0]))
+        print("|", time_value, "|")
         time_unit = get_text_from_class_name(soup, names[1])
 
         return Time(time_value, time_unit)
 
+    def extract_course(soup) -> str:
+        return str(get_text_from_class_name(soup, class_names.COURSE))
+
+    def extract_cuisine(soup) -> str:
+        return str(get_text_from_class_name(soup, class_names.CUISINE))
+
+    def extract_keywords(soup) -> List[str]:
+        return None
+
+    def extract_servings(soup) -> int:
+        return get_int_from_str(get_text_from_class_name(soup, class_names.SERVINGS))
+
+    def extract_author(soup) -> str:
+        return str(get_text_from_class_name(soup, class_names.AUTHOR))
+
+    def extract_url(soup) -> str:
+        return None
+
+    def extract_image_url(soup) -> str:
+        return str(get_text_from_class_name(soup, class_names.IMAGE_URL))
+
+    def extract_description(soup) -> str:
+        return str(get_text_from_class_name(soup, class_names.DESCRIPTION))
+
     def _attempt_class_name_extraction(self) -> Iterable[Tag]:
-        return get_tags_from_class_names(self._soup, self._class_names)
+        return get_text_from_class_name(self._soup, self._class_names)
