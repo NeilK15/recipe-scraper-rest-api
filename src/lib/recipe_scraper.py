@@ -1,14 +1,14 @@
 # Other modules
-import requests  # TEMPORARY (PLACE IN UTIL METHODS)
 from bs4 import BeautifulSoup, Tag
-import sys
 import os
 import uuid
+import json
 
 # Local modules
 from src.utils import *
-from src.constant import keywords
 from src.extraction import *
+from src.constant import *
+from src.models import Recipe
 
 
 class RecipeScraper:
@@ -49,35 +49,38 @@ class RecipeScraper:
         self.__soup = make_request(url)
 
         # Creating the path strings and then creating the folders
-        raw_path = "/".join([dataPath, "raw"])
+        # raw_path = "/".join([dataPath, "raw"])
         staged_path = "/".join([dataPath, "staged"])
         finalized_path = "/".join([dataPath, "finalized"])
 
-        make_directory(raw_path)
+        # make_directory(raw_path)
         make_directory(staged_path)
         make_directory(finalized_path)
 
         # Lists of file to be created
-        raw_files = [
-            "info_raw.txt",
-            "ingredients_raw.txt",
-            "instructions_raw.txt",
-            "tips_raw.txt",
-            "nutrition_raw.txt",
-            "metadata_raw.txt",
-        ]
+        # raw_files = [
+        #     "info_raw.txt",
+        #     "ingredients_raw.txt",
+        #     "instructions_raw.txt",
+        #     "tips_raw.txt",
+        #     "nutrition_raw.txt",
+        #     "metadata_raw.txt",
+        # ]
         staged_files = ["review.json"]
         finalized_files = ["final.json"]
 
         # Making all the files
-        for file in raw_files:
-            make_file(raw_path, file)
+        # for file in raw_files:
+        #     make_file(raw_path, file)
 
         for file in staged_files:
             make_file(staged_path, file)
 
         for file in finalized_files:
             make_file(finalized_path, file)
+
+        self.__review_path = staged_path + "/review.json"
+        self.__final_path = staged_path + "/final.json"
 
         self.initialized = True
 
@@ -87,21 +90,87 @@ class RecipeScraper:
         return self.__soup
 
     # Logic methods
-    def create_recipe(self):
-        if self.url == None:
+    def stage_recipe(self) -> Recipe:
+        """Scrapes the website at the url provided and stages the recipe as a json file in the staging area"""
+        if self.__url == None:
             return
 
-        self.soup.find_all()
+        # Extract the info
+        (
+            prep_time,
+            cook_time,
+            total_time,
+            course,
+            cuisine,
+            keywords_,
+            servings,
+            author,
+            url,
+            image_url,
+            description,
+        ) = self._extract_info()
 
-        insts = self.extract_instructions()
-        for inst in insts:
-            print(inst.text)
+        # Extract the ingredients
+        # Extract the instructions
+        # Extract the keywords
+        # Extract the tips
+        # Extract the nutrition
+        # Generate the metadata
 
-        # recipe = Recipe()
-        # recipe.prep_time = Time()
+        # Generate the recipe
+        recipe = Recipe(
+            prep_time=prep_time,
+            cook_time=cook_time,
+            total_time=total_time,
+            course=course,
+            cuisine=cuisine,
+            keywords=keywords_,
+            servings=servings,
+            author=author,
+            url=url,
+            image_url=image_url,
+            description=description,
+        )
 
-    def extract_instructions(self):
-        return self.soup.find_all(has_instructions)
+        # Generate the recipe in json and add to data/stage/review.json
+        with open(self.__review_path, "w") as review:
+            json.dump(recipe.to_json(), review, indent=4)
 
-    def extract_info(self):
-        return TimeExtracting.extract_prep_time(self.soup)
+    def _extract_info(self):
+        """
+        Returns the info in the following order:
+        Prep Time, Cook Time, Total Time, Course, Cuisine, Keywords, Servings,
+        Author, URL, Image URL, Description
+        """
+
+        # Extracting the times
+        prep_time = Extraction.extract_time(self.__soup, TimeType.TIME_PREP)
+        cook_time = Extraction.extract_time(self.__soup, TimeType.TIME_COOK)
+        total_time = Extraction.extract_time(self.__soup, TimeType.TIME_TOTAL)
+
+        course = None
+        cuisine = None
+        keywords_ = None
+        servings = None
+        author = None
+        url = None
+        image_url = None
+        description = None
+
+        return (
+            prep_time,
+            cook_time,
+            total_time,
+            course,
+            cuisine,
+            keywords_,
+            servings,
+            author,
+            url,
+            image_url,
+            description,
+        )
+
+    def _extract_instructions(self):
+        """Returns an instruction object with the instructions populated"""
+        return self.__soup.find_all(has_instructions)

@@ -48,3 +48,13 @@ def get_instructions_keywords() -> List[str]:
 def get_prep_time_keywords() -> List[str]:
     prep_time_keywords = ["prep time"]
     return prep_time_keywords
+
+
+def get_cook_time_keywords() -> List[str]:
+    prep_time_keywords = ["cook time"]
+    return prep_time_keywords
+
+
+def get_total_time_keywords() -> List[str]:
+    prep_time_keywords = ["total time"]
+    return prep_time_keywords

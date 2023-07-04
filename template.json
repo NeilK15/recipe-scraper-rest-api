@@ -38,15 +38,18 @@
 		"instructions": [
 			{
 				"instruction": "Peel and dice the potatoes",
-				"imageUrl": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/09/How-to-Make-Breakfast-Potatoes-1.jpg"
+				"imageUrl": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/09/How-to-Make-Breakfast-Potatoes-1.jpg",
+				"group": null
 			},
 			{
-				"instruction": "Add the potatoes to the pot",
-				"imageUrl": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/09/How-to-Make-Breakfast-Potatoes-1.jpg"
+				"instruction": "Peel and dice the potatoes",
+				"imageUrl": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/09/How-to-Make-Breakfast-Potatoes-1.jpg",
+				"group": null
 			},
 			{
-				"instruction": "Eat",
-				"imageUrl": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/09/How-to-Make-Breakfast-Potatoes-1.jpg"
+				"instruction": "Peel and dice the potatoes",
+				"imageUrl": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/09/How-to-Make-Breakfast-Potatoes-1.jpg",
+				"group": null
 			}
 		],
 		"tips": [

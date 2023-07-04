@@ -1,35 +1,51 @@
 from typing import List
-from src.models import *
+from src.models.recipe_parts import Time, Ingredient, Nutrition, Instruction, Tip
 
 
 class Recipe:
-    def __init__(self):
+    def __init__(
+        self,
+        prep_time=None,
+        cook_time=None,
+        total_time=None,
+        course=None,
+        cuisine=None,
+        keywords=None,
+        servings=None,
+        author=None,
+        url=None,
+        image_url=None,
+        description=None,
+        ingredients=None,
+        instructions=None,
+        tips=None,
+        nutrition=None,
+    ):
         self.__id: int
 
         # Times
-        self.__prep_time: Time
-        self.__cook_time: Time
-        self.__total_time: Time
+        self.__prep_time: Time = prep_time
+        self.__cook_time: Time = cook_time
+        self.__total_time: Time = total_time
 
-        self.__course: str
-        self.__cuisine: str
-        self.__keywords: List[str]
-        self.__servings: int
-        self.__author: str
-        self.__url: str
-        self.__imageUrl: str
-        self.__description: str
+        self.__course: str = course
+        self.__cuisine: str = cuisine
+        self.__keywords: List[str] = keywords
+        self.__servings: int = servings
+        self.__author: str = author
+        self.__url: str = url
+        self.__image_url: str = image_url
+        self.__description: str = description
 
         # Ingredients
-        self.__ingredients: List[Ingredient]
+        self.__ingredients: List[Ingredient] = ingredients
 
-        self.__instructions: List[Instruction]
-        self.__tips: dict
+        self.__instructions: List[Instruction] = instructions
+        self.__tips: List[Tip] = tips
 
-        self.__nutrition: Nutrition
+        self.__nutrition: Nutrition = nutrition
 
     # Properties
-
     @property
     def id(self) -> int:
         return self.__id
@@ -72,7 +88,7 @@ class Recipe:
 
     @property
     def imageUrl(self) -> str:
-        return self.__imageUrl
+        return self.__image_url
 
     @property
     def description(self) -> str:
@@ -93,3 +109,13 @@ class Recipe:
     @property
     def nutrition(self) -> Nutrition:
         return self.__nutrition
+
+    # Viewing and exporting methods
+    def to_json(self) -> dict:
+        to_json = {
+            "prepTime": self.__prep_time.value,
+            "prepTimeUnit": self.__prep_time.unit
+            # "instructions": [instruction.to_json for instruction in self.__instructions]
+        }
+
+        return to_json
