@@ -39,7 +39,7 @@ class RecipeScraper:
 
         if dataPath == None:
             id = uuid.uuid1()
-            print(id)
+            # print(id)
             cwd = os.getcwd()
             dataPath = "/".join([cwd, f"data-{id}"])
             make_directory(dataPath)
@@ -135,6 +135,8 @@ class RecipeScraper:
         # Generate the recipe in json and add to data/stage/review.json
         with open(self.__review_path, "w") as review:
             json.dump(recipe.to_json(), review, indent=4)
+
+        return recipe
 
     def _extract_info(self):
         """

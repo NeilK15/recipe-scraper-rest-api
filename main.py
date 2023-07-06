@@ -1,12 +1,15 @@
 import sys
 
+# print(str(sys.argv))
+
 sys.path.append("/Users/neilkapur/Local/recipe-scraper/src")
 
 from lib.recipe_scraper import RecipeScraper
 
+
 scraper = RecipeScraper(
-    dataPath="/Users/neilkapur/Local/recipe-scraper/data-d59b8d88-192e-11ee-9718-7eccf7be6701",
-    url="https://downshiftology.com/recipes/breakfast-potatoes/",
+    dataPath="/Users/neilkapur/Local/recipe-scraper/data",
+    url=str(sys.argv[1]),
 )
 
-scraper.stage_recipe()
+print(scraper.stage_recipe().to_json())

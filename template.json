@@ -1,6 +1,7 @@
 [
 	{
 		"id": 1,
+		"name": "Breakfast Potatoes",
 		"prepTime": 5,
 		"prepTimeUnit": "mins",
 		"cookTime": 10,
@@ -39,17 +40,33 @@
 			{
 				"instruction": "Peel and dice the potatoes",
 				"imageUrl": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/09/How-to-Make-Breakfast-Potatoes-1.jpg",
-				"group": null
+				"group": false
+			},
+			{
+				"group": true,
+				"name": "For the broth",
+				"instructions": [
+					{
+						"instruction": "Prepare the broth",
+						"imageUrl": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/09/How-to-Make-Breakfast-Potatoes-1.jpg",
+						"group": false
+					},
+					{
+						"instruction": "Eat the broth",
+						"imageUrl": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/09/How-to-Make-Breakfast-Potatoes-1.jpg",
+						"group": false
+					}
+				]
 			},
 			{
 				"instruction": "Peel and dice the potatoes",
 				"imageUrl": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/09/How-to-Make-Breakfast-Potatoes-1.jpg",
-				"group": null
+				"group": false
 			},
 			{
 				"instruction": "Peel and dice the potatoes",
 				"imageUrl": "https://i2.wp.com/www.downshiftology.com/wp-content/uploads/2020/09/How-to-Make-Breakfast-Potatoes-1.jpg",
-				"group": null
+				"group": false
 			}
 		],
 		"tips": [
@@ -62,60 +79,73 @@
 				"tip": "Use the microwave"
 			}
 		],
-		"nutrition": {
-			"calories": {
-				"amount": 300,
-				"unit": "grams"
+		"nutrition": [
+			{
+				"title": "Calories",
+				"value": 300,
+				"unit": "cals"
 			},
-			"carbohydrates": {
-				"amount": 300,
-				"unit": "grams"
+			{
+				"title": "Carbohydrates",
+				"value": 300,
+				"unit": "g"
 			},
-			"protein": {
-				"amount": 300,
-				"unit": "grams"
+			{
+				"title": "Protein",
+				"value": 30,
+				"unit": "g"
 			},
-			"fat": {
-				"amount": 300,
-				"unit": "grams"
+			{
+				"title": "Fat",
+				"value": 15,
+				"unit": "g"
 			},
-			"saturatedFat": {
-				"amount": 300,
-				"unit": "grams"
+			{
+				"title": "Saturated Fat",
+				"value": 5,
+				"unit": "g"
 			},
-			"sodium": {
-				"amount": 300,
-				"unit": "grams"
+			{
+				"title": "Sodium",
+				"value": 400,
+				"unit": "g"
 			},
-			"potassium": {
-				"amount": 300,
-				"unit": "grams"
+			{
+				"title": "Potassium",
+				"value": 30,
+				"unit": "g"
 			},
-			"fiber": {
-				"amount": 300,
-				"unit": "grams"
+			{
+				"title": "Fiber",
+				"value": 3,
+				"unit": "g"
 			},
-			"sugar": {
-				"amount": 300,
-				"unit": "grams"
+			{
+				"title": "Sugar",
+				"value": 10,
+				"unit": "g"
 			},
-			"vitaminA": {
-				"amount": 300,
-				"unit": "grams"
+			{
+				"title": "Vitamin A",
+				"value": 123,
+				"unit": "iu"
 			},
-			"vitaminC": {
-				"amount": 300,
-				"unit": "grams"
+			{
+				"title": "Vitamin C",
+				"value": 25,
+				"unit": "mg"
 			},
-			"calcium": {
-				"amount": 300,
-				"unit": "grams"
+			{
+				"title": "Calcium",
+				"value": 24,
+				"unit": "mg"
 			},
-			"iron": {
-				"amount": 300,
-				"unit": "grams"
+			{
+				"title": "Iron",
+				"value": 1,
+				"unit": "mg"
 			}
-		},
+		],
 		"metadata": {
 			"dateCreated": "2020-10-01",
 			"dateTimeExtracted": "2023-07-02 15:00:00.000",

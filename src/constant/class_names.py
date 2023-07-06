@@ -11,6 +11,7 @@ TOTAL_TIME_VALUE = "wprm-recipe-total_time"
 TOTAL_TIME_UNIT = "wprm-recipe-total_time-unit"
 
 # Other Information specific class names
+NAME = "wprm-recipe-name"
 COURSE = "wprm-recipe-course"
 CUISINE = "wprm-recipe-cuisine"
 SERVINGS = "wprm-recipe-servings"

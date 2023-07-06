@@ -2,6 +2,7 @@ from typing import List
 import uuid
 import time
 from datetime import date
+import json
 
 from src.models.recipe_parts import Time, Ingredient, Nutrition, Instruction, Tip
 
@@ -9,6 +10,7 @@ from src.models.recipe_parts import Time, Ingredient, Nutrition, Instruction, Ti
 class Recipe:
     def __init__(
         self,
+        name=None,
         prep_time=None,
         cook_time=None,
         total_time=None,
@@ -32,6 +34,7 @@ class Recipe:
         self.__cook_time: Time = cook_time
         self.__total_time: Time = total_time
 
+        self.__name: str = name
         self.__course: str = course
         self.__cuisine: str = cuisine
         self.__keywords: List[str] = keywords
@@ -53,6 +56,10 @@ class Recipe:
     @property
     def id(self) -> int:
         return self.__id
+
+    @property
+    def name(self) -> str:
+        return self.__name
 
     @property
     def prep_time(self) -> Time:
@@ -143,4 +150,4 @@ class Recipe:
             },
         }
 
-        return to_json
+        return json.dumps(to_json)

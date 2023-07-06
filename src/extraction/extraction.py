@@ -22,10 +22,13 @@ class Extraction:
                 raise SyntaxError("Invalid time_type")
 
         time_value = get_int_from_str(get_text_from_class_name(soup, names[0]))
-        print("|", time_value, "|")
+        # print("|", time_value, "|")
         time_unit = get_text_from_class_name(soup, names[1])
 
         return Time(time_value, time_unit)
+
+    def extract_name(soup) -> str:
+        return str(get_text_from_class_name(soup, class_names.NAME))
 
     def extract_course(soup) -> str:
         return str(get_text_from_class_name(soup, class_names.COURSE))
