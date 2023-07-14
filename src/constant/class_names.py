@@ -1,7 +1,3 @@
-INGREDIENT_GROUP = "wprm-recipe-ingredient-group"
-INGREDIENT_GROUP_NAME = "wprm-recipe-ingredient-group-name"
-INGREDIENT = "wprm-recipe-ingredient"
-
 # Time specific class names
 PREP_TIME_VALUE = "wprm-recipe-prep_time"
 PREP_TIME_UNIT = "wprm-recipe-prep_time-unit"
@@ -18,3 +14,13 @@ SERVINGS = "wprm-recipe-servings"
 AUTHOR = "wprm-recipe-author"
 IMAGE_URL = "wprm-recipe-image"
 DESCRIPTION = "wprm-recipe-summary"
+KEYWORDS = "wprm-recipe-keyword"
+
+# For ingredients
+INGREDIENT_GROUP = "wprm-recipe-ingredient-group"
+INGREDIENT_GROUP_NAME = "wprm-recipe-ingredient-group-name"
+INGREDIENT = "wprm-recipe-ingredient"
+INGREDIENT_NAME = "wprm-recipe-ingredient-name"
+INGREDIENT_UNIT = "wprm-recipe-ingredient-unit"
+INGREDIENT_AMOUNT = "wprm-recipe-ingredient-amount"
+INGREDIENT_NOTES = "wprm-recipe-ingredient-notes"

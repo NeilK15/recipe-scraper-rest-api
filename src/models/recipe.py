@@ -1,31 +1,32 @@
 from typing import List
 import uuid
 import time
-from datetime import date
+from datetime import datetime
 import json
 
-from src.models.recipe_parts import Time, Ingredient, Nutrition, Instruction, Tip
+from src.models.recipe_parts import Time, IngredientGroup, Nutrition, Instruction, Tip
 
 
 class Recipe:
     def __init__(
         self,
-        name=None,
-        prep_time=None,
-        cook_time=None,
-        total_time=None,
-        course=None,
-        cuisine=None,
-        keywords=None,
-        servings=None,
-        author=None,
-        url=None,
-        image_url=None,
-        description=None,
-        ingredients=None,
-        instructions=None,
-        tips=None,
-        nutrition=None,
+        name: str = None,
+        prep_time: Time = None,
+        cook_time: Time = None,
+        total_time: Time = None,
+        course: str = None,
+        cuisine: str = None,
+        keywords: List[str] = None,
+        servings: int = None,
+        author: str = None,
+        url: str = None,
+        image_url: str = None,
+        description: str = None,
+        ingredient_groups: List[IngredientGroup] = None,
+        instructions: List[Instruction] = None,
+        tips: List[Tip] = None,
+        nutrition: Nutrition = None,
+        date_created: str = None,
     ):
         self.__id: int = uuid.uuid1().int
 
@@ -45,12 +46,14 @@ class Recipe:
         self.__description: str = description
 
         # Ingredients
-        self.__ingredients: List[Ingredient] = ingredients
+        self.__ingredient_groups: List[IngredientGroup] = ingredient_groups
 
         self.__instructions: List[Instruction] = instructions
         self.__tips: List[Tip] = tips
 
         self.__nutrition: Nutrition = nutrition
+
+        self.__date_created: str = date_created
 
     # Properties
     @property
@@ -106,8 +109,8 @@ class Recipe:
         return self.__description
 
     @property
-    def ingredients(self) -> List[Ingredient]:
-        return self.__ingredients
+    def ingredients(self) -> List[IngredientGroup]:
+        return self.__ingredient_groups
 
     @property
     def instructions(self) -> List[Instruction]:
@@ -120,6 +123,10 @@ class Recipe:
     @property
     def nutrition(self) -> Nutrition:
         return self.__nutrition
+
+    @property
+    def date_created(self) -> str:
+        return self.__date_created
 
     # Viewing and exporting methods
     def to_json(self) -> dict:
@@ -139,13 +146,13 @@ class Recipe:
             "url": self.__url,
             "imageUrl": self.__image_url,
             "description": self.__description,
-            "ingredients": self.__ingredients,
+            "ingredientGroups": [ingr.to_json() for ingr in self.__ingredient_groups],
             "instructions": self.__instructions,
             "tips": self.__tips,
             "nutrition": self.__nutrition,
             "metadata": {
-                "dateCreated": date.isoformat(date.today()),
-                "dateTimeExtracted": "2023-07-02 15:00:00.000",
+                "dateCreated": self.__date_created,
+                "dateTimeExtracted": datetime.isoformat(datetime.now()),
                 "extractionMethod": "web-scrapping",
             },
         }

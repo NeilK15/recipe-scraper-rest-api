@@ -37,7 +37,7 @@ class RecipeScraper:
         if url == None:
             raise SyntaxError("Enter valid URL")
 
-        if dataPath == None:
+        if dataPath == None or not os.path.exists(dataPath):
             id = uuid.uuid1()
             # print(id)
             cwd = os.getcwd()
@@ -130,11 +130,12 @@ class RecipeScraper:
             url=url,
             image_url=image_url,
             description=description,
+            ingredient_groups=self._extract_ingredients(),
         )
 
         # Generate the recipe in json and add to data/stage/review.json
         with open(self.__review_path, "w") as review:
-            json.dump(recipe.to_json(), review, indent=4)
+            review.write(recipe.to_json())
 
         return recipe
 
@@ -151,7 +152,7 @@ class RecipeScraper:
         total_time = Extraction.extract_time(self.__soup, TimeType.TIME_TOTAL)
         course = Extraction.extract_course(self.__soup)
         cuisine = Extraction.extract_cuisine(self.__soup)
-        keywords_ = None
+        keywords_ = Extraction.extract_keywords(self.__soup)
         servings = Extraction.extract_servings(self.__soup)
         author = Extraction.extract_author(self.__soup)
         url = self.__url
@@ -171,6 +172,9 @@ class RecipeScraper:
             image_url,
             description,
         )
+
+    def _extract_ingredients(self):
+        return Extraction.extract_ingredients(self.__soup)
 
     def _extract_instructions(self):
         """Returns an instruction object with the instructions populated"""
